@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+
+</head>
+<body>
+
+  <div id="display">00:00:00</div>
+  <button onclick="start()">Start</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="reset()">Reset</button>
+
+
+
+</body>
+</html>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #display {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 20px;
+      margin: 5px;
+      padding: 10px 20px;
+    }
+  </style>
+  <script>
+    let startTime = 0;
+    let elapsedTime = 0;
+    let timerInterval;
+
+    function updateDisplay() {
+      const time = new Date(elapsedTime);
+      const hrs = String(time.getUTCHours()).padStart(2, '0');
+      const mins = String(time.getUTCMinutes()).padStart(2, '0');
+      const secs = String(time.getUTCSeconds()).padStart(2, '0');
+      document.getElementById('display').textContent = `${hrs}:${mins}:${secs}`;
+    }
+
+    function start() {
+      if (!timerInterval) {
+        startTime = Date.now() - elapsedTime;
+        timerInterval = setInterval(() => {
+          elapsedTime = Date.now() - startTime;
+          updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function pause() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function reset() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      elapsedTime = 0;
+      updateDisplay();
+    }
+
+    // 초기화
+    updateDisplay();
+  </script>
+
+
+<!-- 
+elapsedTime
+- ms
+
+Date()
+- console.log(new Date(0).toString());     // Thu Jan 01 1970 09:00:00 GMT+0900 (한국 표준시)
+- console.log(new Date(0).getUTCHours() ); // 0
+- console.log(new Date(0).getHours());     // 9 (한국 기준)
+
+Date.now()
+- ms
+- 계속증가
+-->
