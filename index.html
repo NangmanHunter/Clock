@@ -118,45 +118,47 @@ Date.now()
     // Set the favicon text
     createFavicon("⏱️");
 </script>
-  <style>
-    body {
-      transition: background-color 0.3s, color 0.3s;
-    }
-  
-    body.dark-mode {
-      background-color: #121212;
-      color: #ffffff;
-    }
-    body.dark-mode button{
-      background-color: #121212;
-      color: #ffffff;
-    }
-  
-    .toggle-btn {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: transparent;
-      color: white;
-      transition: background-color 0.3s;
-    }
-  
-    .toggle-btn:hover {
-      filter: invert(0.3);
-    }
-  </style>
-  <script>
-    document.body.insertAdjacentHTML('beforeend', `
-      <button class="toggle-btn" onclick="toggleDarkMode()">🌙</button>
-    `);
-  
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-  
-      const b=document.getElementsByClassName(`toggle-btn`)[0];
-      const t=b.textContent;
-      t==`🌙` ? b.textContent=`☀️` : b.textContent=`🌙`; 
-    }
-  </script>
+
+
+<style>
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  body.dark-mode button{
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  #toggle-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    transition: background-color 0.3s;
+  }
+
+  #toggle-btn:hover {
+    filter: invert(0.3);
+  }
+</style>
+<script>
+  document.body.insertAdjacentHTML('beforeend', `
+    <button id="toggle-btn" onclick="toggleDarkMode()">🌙</button>
+  `);
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+
+    const b=document.getElementById(`toggle-btn`);
+    const t=b.textContent;
+    t==`🌙` ? b.textContent=`☀️` : b.textContent=`🌙`; 
+  }
+</script>
